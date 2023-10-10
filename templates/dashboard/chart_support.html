@@ -1,0 +1,229 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
+integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<style>
+    #appCapsule {
+        position: relative;
+        height: 100vh; 
+        display: flex;
+        flex-direction: column;
+    }
+    .chat-container {
+        flex: 1;
+        overflow-y: auto; 
+    }
+    .message-input {
+        position: absolute; 
+        bottom: 0; 
+        left: 0; 
+        right: 0; 
+        background-color: #fff; 
+        padding: 10px; 
+    }
+    
+</style>
+
+
+<div id="appCapsule">
+
+    <br><br>
+    
+    <div class="chat-container">
+        {% comment %} <div class="message-divider">
+            Friday, Sep 20, 10:40 AM
+        </div> {% endcomment %}
+    
+        {% for message in messages %}
+        <div class="message-item {% if message.sender == request.user %}user{% endif %}">
+            {% comment %} {% if message.picture %}<img src="{{message.picture.url}}" alt="avatar" class="avatar">{% endif %} {% endcomment %}
+            {% comment %} {% if message.image %}<img src="{{message.image.url}}" alt="avatar" class="avatar">{% endif %} {% endcomment %}
+            <div class="content">
+                <div class="title">{{ message.sender.username }}</div>
+                <div class="bubble">
+                    {{ message.message }}
+                </div>
+                <div class="footer">{{ message.date_created }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    
+        {% comment %} <div class="message-divider">
+            Friday, Sep 21, 7:40 PM
+        </div> {% endcomment %}
+    </div>
+
+    
+    <!-- chat footer -->
+   
+    <div class="container-fluid position-relative">
+        
+            <div class="row align-items-center">
+                {% comment %} <div class="col-auto">
+                    <label for="image-input" class="camera-icon">
+                        <ion-icon name="camera"></ion-icon>
+                    </label>
+                    <input type="file" id="image-input" name="image" class="form-control" accept="image/*" style="display: none;">
+                    
+                </div> {% endcomment %}
+                <div class="col">
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            
+                            <textarea id="message-input" required='required' name="message" class="h-100 w-100 form-control" placeholder="Write your message here"></textarea>
+                            <i class="clear-input">
+                                <ion-icon name="close-circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="form-group basic">
+                        <button type="submit" id="send-btn" class="btn btn-icon btn-primary rounded">
+                            <ion-icon name="arrow-forward-outline"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    
+</div>
+<!-- * App Capsule -->
+<script>
+    let message_send_btn = document.getElementById("send-btn");
+let message_input = document.getElementById("message-input");
+let lastMessageId = 0;
+let messagesArray = [];
+
+function send_message() {
+    console.log("send_message function called");
+    
+    let message = message_input.value;
+    if (message.trim() === "") {
+        return;
+    }
+    message_input.value = "";
+    
+    // Construct the message data as an object
+    const messageData = { message: message };
+
+    fetch("{% url 'core:chart_support' adm.id %}", {
+        method: "POST",
+        credentials: 'same-origin',
+        headers: {
+            "Content-Type": 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify(messageData)
+    })
+    .then(response => {
+        if (response && response.headers && response.headers.get) {
+            if (response.headers.get('content-type') === 'application/json') {
+                return response.json();  // Parse JSON response
+            } else {
+                return response.text();  // Parse plain text response
+            }
+        } else {
+            console.error('Invalid response object:', response);
+            // Handle the case where the response object is undefined or lacks the expected properties
+        }
+    })
+    .then(responseData => {
+        if (Array.isArray(responseData)) {
+            // Process JSON data as messages
+            for (const message of responseData) {
+                construct_message(message);
+            }
+        } else if (responseData && responseData.status === 'Message sent successfully') {
+            // Handle success message (plain text)
+            console.log(responseData.status);
+            // You can display a success message to the user, if needed
+        } else {
+            console.error('Invalid response:', responseData);
+            // Handle other unexpected responses
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle any error that occurs during the fetch request
+    });
+    location.reload();
+
+
+
+    
+}
+
+function load_messages() {
+    // Check if lastMessageId is not null before making the GET request
+    if (lastMessageId !== null) {
+        // Define the URL with the lastMessageId as a query parameter
+        // let url = `{% url 'core:ajax_load_messages' adm.id %}?last_message_id=${lastMessageId}`;
+        let url = `{% url 'core:ajax_load_messages' adm.id %}`
+
+        fetch(url,
+        {
+            method: "GET",
+            credentials: 'same-origin',
+            headers: {
+                "Content-Type": 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+        }
+        )
+            .then(e => e.json())
+            .then(messages => {
+                if (messages.length > 0) {
+                    // Update lastMessageId with the ID of the latest message
+                   // lastMessageId = messages[messages.length - 1]?.id;
+
+                    console.log(messages);
+                    const newMessages = messages.filter(message => !messagesArray.some(existingMessage => existingMessage.id === message.id));
+                    /* for (message of messages) {
+
+                        construct_message(message);
+                    } */
+                    if (newMessages.length > 0) {
+                        // Append new messages to the container
+                        for (message of newMessages) {
+                            messagesArray.push(message);
+                            construct_message(message);
+                        }
+                    }
+                }
+            });
+    }
+}
+
+function construct_message(message) {
+    let messages_container = document.querySelector(".chat-container");
+    let class_name = message.sent ? "user" : "l"; // Conditionally add "user" class
+
+    let div = document.createElement("div");
+    div.classList.add("message-item", class_name); // Add class based on condition
+    div.innerHTML = `
+        <div class="title">${message.sender}</div>
+        <div class="bubble">${message.message}</div>
+        <div class="footer">${message.date_created}</div>
+    `;
+    
+    div.scrollIntoView();
+    
+    messages_container.appendChild(div);
+}
+
+message_send_btn.addEventListener('click', send_message);
+
+// Load messages initially and then at intervals (you can adjust the interval)
+
+setInterval(()=>{
+    load_messages();
+}, 50);
+
+
+</script>
+
+{% endblock %}

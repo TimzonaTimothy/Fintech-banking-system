@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Company Name. - Login</title>
+    <meta name="title" Content="MORGAN CAPITALS BANK INTL. - Login">
+    <meta name="description" content="morgan.capitals-inc.com  is a complete Online-Banking system. We have account-holders from almost all over the world. This is getting popular day by day. Our system is secure and robust. You may feel safe about your deposited funds.">
+    <meta name="keywords" content="bank,e-banking,digital banking,digital bank,laon,deposit,fdr,dps,cmb,uk bank,morgan.capitals-inc.com,morgancapitals,,inc">
+    <link rel="shortcut icon" href="{% static 'assets/images/logoIcon/favicon.png' %}" type="image/x-icon">
+
+    
+    <link rel="apple-touch-icon" href="{% static 'assets/images/logoIcon/logo.png' %}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MORGAN CAPITALS BANK INTL. - Login">
+    
+    <meta itemprop="name" content="MORGAN CAPITALS BANK INTL. - Login">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="{% static 'assets/images/seo/643c621cb03461681678876.jpg' %}">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="morgan.capitals-inc.com  is a complete Online-Banking system. We have account-holders from almost all over the world. This is getting popular day by day">
+    <meta property="og:description" content="morgan.capitals-inc.com  is a complete Online-Banking system. We have account-holders from almost all over the world. This is getting popular day by day">
+    <meta property="og:image" content="{% static 'assets/images/seo/643c621cb03461681678876.jpg' %}"/>
+    <meta property="og:image:type" content="{% static 'image/jpg' %}" />
+        <meta property="og:image:width" content="1180" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:url" content="{% url 'sign_in' %}">
+    
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link href="{% static 'assets/global/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/global/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/global/css/line-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/templates/basic/css/slick.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/templates/basic/css/lightcase.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/templates/basic/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/templates/basic/css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/templates/basic/css/color.css' %}" rel="stylesheet">
+    
+    <style>
+		#preloader {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 99999;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      background: #14233c;
+      display: table;
+      text-align: center;
+    }
+    
+    .loader {
+      display: table-cell;
+      vertical-align: middle;
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+    
+    .loader-icon {
+      width: 80px;
+      height: 80px;
+      border: 5px solid #002333;
+      border-right-color: #eee;
+      border-radius: 50%;
+      position: relative;
+      animation: loader-rotate 1s linear infinite;
+      margin: 0 auto;
+    }
+    
+    @keyframes loader-rotate {
+      0% {
+        transform: rotate(0);
+      }
+    
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hide-preloader {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    }
+   
+	</style>
+
+    </head>
+
+<body>
+
+    <div id="preloader">
+        <div class="row loader">
+            <div class="loader-icon"></div>
+        </div>
+    </div>
+
+
+    <div class="main-wrapper">
+            
+    <section class="account-section bg_img" style="background-image: url('{% static 'assets/images/frontend/login_bg/6110c9ec14e281628490220.jpg' %}');">
+        <div class="account-section-left">
+            <div class="account-section-left-inner">
+                <h4 class="title text-white mb-2">Welcome Back To CMB!</h4>
+                <p class="text-white">Provide your username and password and login into your account</p>
+                <a href="{% url 'home' %}" class="btn btn-sm btn-outline--base mt-3"> <i class="la la-reply" aria-hidden="true"></i> Back to Home</a>
+            </div>
+        </div>
+        <div class="account-section-right">
+            <div class="top text-center mb-5">
+                <a href="{% url 'home' %}" class="account-logo">
+                    {% comment %} <img src="{% static 'assets/images/logoIcon/logo.png' %}" alt="logo"> {% endcomment %}
+                    <h2 style="color:white;">Logo</h2>
+                </a>
+            </div>
+            {% include 'alert.html' %}
+            <div class="middle">
+                <form method="POST" class="verify-gcaptcha account-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email" class="form-label required">Email</label>
+                        <input type="email" name="email" value="" class="form--control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label required">Password</label>
+                        <input id="password" type="password" class="form--control" name="password" required>
+                    </div>
+
+                    
+                    <div class="form-group form-check d-flex justify-content-between">
+                        {% comment %} <div>
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember" >
+                            <label class="form-check-label" for="remember">Remember Me</label>
+                        </div> {% endcomment %}
+
+                        <a class="forgot-pass" href="{% url 'forget_password' %}">
+                            Forgot password?                        </a>
+                    </div>
+
+                    <button type="submit" id="recaptcha" class="btn btn--base w-100">Login</button>
+                </form>
+
+                <p class="text-white mt-3">Don't have an account?                    <a href="{% url 'sign_up' %}" class="text--base">Create New</a>
+                </p>
+            </div>
+        </div>
+    </section>
+    </div>
+
+
+    <script>
+        window.addEventListener('load', function () {
+          var preloader = document.getElementById('preloader');
+          setTimeout(function () {
+            preloader.classList.add('hide-preloader');
+          }, 500);
+        });
+       
+    </script>
+
+    <script src="{% static 'assets/global/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/global/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/templates/basic/js/lightcase.js' %}"></script>
+    <script src="{% static 'assets/templates/basic/js/slick.min.js' %}"></script>
+    <script src="{% static 'assets/templates/basic/js/wow.min.js' %}"></script>
+    <script src="{% static 'assets/templates/basic/js/jquery.validate.js' %}"></script>
+    <script src="{% static 'assets/templates/basic/js/main.js' %}"></script>
+
+    
+    
+    
+    <script>
+        "use strict";
+        (function($) {
+
+            $(".langSel").on("change", function() {
+                window.location.href = "https://morgan.capitals-inc.com/change/" + $(this).val();
+            });
+
+            setTimeout(function() {
+                $('.cookies-card').removeClass('hide')
+            }, 2000);
+
+            $('.policy').on('click', function() {
+                $.get(`https://morgan.capitals-inc.com/cookie/accept`, function(response) {
+                    $('.cookies-card').addClass('d-none');
+                });
+            });
+
+            $('form').on('submit', function() {
+                if ($(this).valid()) {
+                    $(':submit', this).attr('disabled', 'disabled');
+                }
+            });
+
+            var inputElements = $('[type=text],[type=password],select,textarea');
+
+            $.each(inputElements, function(index, element) {
+                element = $(element);
+                element.closest('.form-group').find('label').attr('for', element.attr('name'));
+                element.attr('id', element.attr('name'))
+            });
+
+            $.each($('input, select, textarea'), function(i, element) {
+                var elementType = $(element);
+                if (elementType.attr('type') != 'checkbox' && element.hasAttribute('required')) {
+                    $(element).closest('.form-group').find('label').addClass('required');
+                }
+            });
+
+            $('.showFilterBtn').on('click', function() {
+                $('.responsive-filter-card').slideToggle();
+            });
+
+            Array.from(document.querySelectorAll('table')).forEach(table => {
+                let heading = table.querySelectorAll('thead tr th');
+                Array.from(table.querySelectorAll('tbody tr')).forEach((row) => {
+                    Array.from(row.querySelectorAll('td')).forEach((colum, i) => {
+                        colum.setAttribute('data-label', heading[i].innerText)
+                    });
+                });
+            });
+
+        })(jQuery);
+    </script>
+    <link rel="stylesheet" href="{% static 'assets/global/css/iziToast.min.css' %}">
+<script src="{% static 'assets/global/js/iziToast.min.js' %}"></script>
+
+<script>
+    "use strict";
+
+    function notify(status, message) {
+        iziToast[status]({
+            message: message,
+            position: "topRight"
+        });
+    }
+</script>
+</body>
+
+</html>

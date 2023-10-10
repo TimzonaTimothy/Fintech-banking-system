@@ -1,0 +1,11 @@
+{% load example %}
+<table class="mb-3">
+  {{ wizard.management_form }}
+  {% for field in wizard.form %}
+    <label class="form-group icon-group icon-group-right">{{ field.label }}</label>
+    
+    {{ field | add_classes:'form-control'}}<br>
+  {% endfor %}
+  {% comment %} {{ wizard.form.as_table }} {% endcomment %}
+</table>
+

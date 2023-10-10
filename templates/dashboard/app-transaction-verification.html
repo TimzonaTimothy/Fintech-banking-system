@@ -1,0 +1,128 @@
+<!doctype html>
+{% load static %}
+{% load humanize %}
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>CompanyName | Transactions</title>
+    <meta name="description" content="Finapp HTML Mobile Template">
+    <meta name="keywords"
+        content="bootstrap, wallet, banking, fintech mobile template, cordova, phonegap, mobile, html, responsive" />
+    <link rel="icon" type="image/png" href="{% static 'dashboard/assets/img/favicon.png' %}" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'dashboard/assets/img/icon/192x192.png' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/assets/css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<style>
+    .not-visible {
+        display: none;
+    }
+</style>
+
+<body class="bg-white">
+
+
+
+    
+    <!-- App Header -->
+    <div class="appHeader no-border">
+        <div class="left">
+            <a href="{% url 'account:dashboard' %}" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            Transaction Verification
+        </div>
+        <div class="right"> </div>
+    </div>
+    <!-- * App Header -->
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+        <form method='POST' action="{% url 'core:confirm_transfer' %}">
+            {% csrf_token %}
+
+            <input type="hidden" name="amount" value="{{ amount }}">
+            <input type="hidden" name="recipient" value="{{ recipient }}">
+            <input type="hidden" name="description" value="{{ description }}">
+            <div class="section">
+                <div class="splash-page mt-5 mb-5">
+
+                    <div class="transfer-verification">
+                        <div class="transfer-amount">
+                            <span class="caption">Amount</span>
+                            <h2>$ {{amount}}</h2>
+                        </div>
+                        <div class="from-to-block mb-5">
+                            <div class="item text-start">
+                                {% if request.user.profile_picture %}
+                                <img src="{{request.user.profile_picture.url}}" alt="avatar" class="imaged w48">
+                                {% else %}
+                                    <img src="{% static 'user.png' %}" alt="avatar" class="imaged w48">
+                                {% endif %}
+                                <strong>{{request.user.full_name}}</strong>
+                            </div>
+                            <div class="item text-end">
+                                {% if recipient_profile_picture %}
+                                <img src="{{recipient_profile_picture}}" alt="avatar" class="imaged w48">
+                                {% else %}
+                                    <img src="{% static 'user.png' %}" alt="avatar" class="imaged w48">
+                                {% endif %}
+                                <strong>{{recipient_full_name}}</strong>
+                            </div>
+                            <div class="arrow"></div>
+                        </div>
+                    </div>
+                    <h2 class="mb-2 mt-2">Verify the Transaction</h2>
+                    <p>
+                        You are sending <strong class="text-primary">$ {{amount}}</strong> to {{recipient_full_name}}. <br>Are you sure?
+                    </p>
+                    
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{% url 'account:dashboard' %}" class="btn btn-lg btn-outline-secondary btn-block">Cancel</a>
+                    </div>
+                    <div class="col-6">
+                        {% comment %} <a href="" class="btn btn-lg btn-primary btn-block">Confirm</a> {% endcomment %}
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Confirm</button>
+                    </div>
+                </div>
+            </div>
+    </form>
+
+    </div>
+    <!-- * App Capsule -->
+
+
+    <!-- App Bottom Menu -->
+    {% include 'dashboard/app-button-menu.html' %}
+    <!-- * App Bottom Menu -->
+
+    <script src="{% static 'dashboard/assets/js/lib/bootstrap.bundle.min.js' %}"></script>
+    <!-- Ionicons -->
+    {% comment %} <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> {% endcomment %}
+    <!-- Splide -->
+    <script src="{% static 'dashboard/assets/js/plugins/splide/splide.min.js' %}"></script>
+    <!-- Base Js File -->
+    {% comment %} <script src="{% static 'dashboard/assets/js/base.js' %}"></script> {% endcomment %}
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.2/esm/ionicons.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

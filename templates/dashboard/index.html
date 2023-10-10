@@ -1,0 +1,274 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<style>
+
+    #preloader {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 99999;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        background: #6236ff;
+        display: table;
+        text-align: center;
+      }
+      
+      .loader {
+        display: table-cell;
+        vertical-align: middle;
+        position: relative;
+        width: 200px;
+        height: 200px;
+      }
+      
+      .loader-icon {
+        width: 80px;
+        height: 80px;
+        border: 5px solid #002333;
+        border-right-color: #eee;
+        border-radius: 50%;
+        position: relative;
+        animation: loader-rotate 1s linear infinite;
+        margin: 0 auto;
+      }
+      
+      @keyframes loader-rotate {
+        0% {
+          transform: rotate(0);
+        }
+      
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+  
+      .hide-preloader {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+      }
+     
+    
+    #showBalance {
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    /* #showBalance.hidden {
+        opacity: 0;
+    } */
+</style>
+
+<div id="preloader">
+    <div class="row loader">
+        <div class="loader-icon"></div>
+    </div>
+</div>
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+        {% comment %} {% include 'dashboard/alert.html' %} {% endcomment %}
+
+        <!-- Wallet Card -->
+        <div class="section wallet-card-section pt-1">
+            <div class="wallet-card">
+                <!-- Balance -->
+                <div class="balance">
+                    <div class="left">
+                        <span class="title">Total Balance</span>
+                        <h1 id="showBalance" class="total">$ {% if request.user.balance %}{{request.user.balance | intcomma}}{% else %}0.00{% endif %}</h1>
+                    </div>
+                    <div class="right">
+                        <a href="#" id="toggleButton" onclick="toggleBalance()"  class="button">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+                <!-- * Balance -->
+                <!-- Wallet Footer -->
+                <div class="wallet-footer">
+                    <div class="item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#fundActionSheet">
+                            <div class="icon-wrapper bg-secondary">
+                                <ion-icon name="arrow-up-outline"></ion-icon>
+                            </div>
+                            <strong>Fund</strong>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#withdrawActionSheet">
+                            <div class="icon-wrapper bg-danger">
+                                <ion-icon name="arrow-down-outline"></ion-icon>
+                            </div>
+                            <strong>Withdraw</strong>
+                        </a>
+                    </div>
+                    {% comment %} <div class="item">
+                        <a href="app-cards.html">
+                            <div class="icon-wrapper bg-success">
+                                <ion-icon name="card-outline"></ion-icon>
+                            </div>
+                            <strong>Cards</strong>
+                        </a>
+                    </div> {% endcomment %}
+                    <div class="item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exchangeActionSheet">
+                            <div class="icon-wrapper bg-primary">
+                                <ion-icon name="swap-vertical"></ion-icon>
+                            </div>
+                            <strong>Transfer</strong>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#globalexchangeActionSheet">
+                            <div class="icon-wrapper bg-success">
+                                <ion-icon name="swap-vertical"></ion-icon>
+                            </div>
+                            <strong>Global Transfer</strong>
+                        </a>
+                    </div>
+
+                </div>
+                <!-- * Wallet Footer -->
+            </div>
+        </div>
+        {% include 'dashboard/alert.html' %}
+        <!-- Wallet Card -->
+        <!-- SendFund Action Sheet --> 
+        {% include 'dashboard/partial/_fundAction.html' %}
+        <!-- * Send Action Sheet -->
+
+        <!-- Deposit Action Sheet -->
+        {% include 'dashboard/partial/_depositAction.html' %}
+        <!-- * Deposit Action Sheet -->
+
+        <!-- Withdraw Action Sheet --> 
+        {% include 'dashboard/partial/_withdrawAction.html' %}
+        <!-- * Withdraw Action Sheet -->
+
+
+        <!-- Transfer Action Sheet --> 
+        {% include 'dashboard/partial/_localtransferAction.html' %}
+        <!-- * Exchange Action Sheet -->
+
+        <!-- Global Transfer Action Sheet --> 
+        {% include 'dashboard/partial/_globaltransferAction.html' %}
+        <!-- * Exchange Action Sheet -->
+
+        <!-- Stats -->
+        <div class="section">
+            <div class="row mt-2">
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">Deposits</div>
+                        <div class="value text-primary">$ {% if request.user.deposits %}{{request.user.deposits | intcomma }}{% else %}0.00{% endif %}</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">Withdrawals</div>
+                        <div class="value text-success">$ {% if request.user.withdrawals %}{{request.user.withdrawals | intcomma }}{% else %}0.00{% endif %}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">Referrals</div>
+                        <div class="value">$ {% if request.user.referral_balance %}{{ request.user.referral_balance| intcomma }}{% else %}00.00{% endif %}</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-box">
+                        <div class="title">Total Referrals</div>
+                        <div class="value">{% if request.user.total_referrals_count %}{{request.user.total_referrals_count}}{% else %}0{% endif %}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Stats -->
+        {% comment %} <div class="container-fluid mt-2">
+            <a href="{{referral_link}}"><span>{{referral_link}}</span></a>
+        </div> {% endcomment %}
+        <!-- Transactions -->
+        <div class="section mt-4">
+            <div class="section-heading">
+                <h2 class="title">Transactions</h2>
+                <a href="{% url 'core:transactions' %}" class="link">View All</a>
+            </div>
+            {% if grouped_transactions %}
+            {% for date, transactions in grouped_transactions.items %}
+            <div class="transactions">
+                {% for transaction in transactions %}
+                <!-- item -->
+                <a href="{% url 'core:transaction_detail' transaction.id %}" class="item mt-2">
+                    <div class="detail">
+                        
+                        
+                        <div>
+                            <strong>{{transaction.recipient.full_name}}</strong>
+                            <p>{{ transaction.transaction_type }} <span>{{ date }}</span></p> 
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="price text-danger"> -${{ transaction.amount }}</div>
+                        
+                    </div>
+                   
+                    
+                </a>
+                {% endfor %}
+                
+                <!-- * item -->
+                <!-- item -->
+                
+                
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="container-fluid">
+                <p>No Transactions made</p>
+            </div>
+            {% endif %}
+        </div>
+        <!-- * Transactions -->
+
+    </div>
+    <!-- * App Capsule -->
+
+
+    <script>
+        window.addEventListener('load', function () {
+          var preloader = document.getElementById('preloader');
+          setTimeout(function () {
+            preloader.classList.add('hide-preloader');
+          }, 500);
+        });
+       
+    </script>
+    
+
+
+    <script>
+        function toggleBalance() {
+            var balanceElement = document.getElementById("showBalance");
+            var toggleButton = document.getElementById("toggleButton");
+            
+            if (balanceElement.classList.contains("hidden")) {
+                balanceElement.classList.remove("hidden");
+                toggleButton.innerHTML = '<ion-icon name="eye-outline"></ion-icon>';
+                balanceElement.textContent = '$ {% if request.user.balance %}{{request.user.balance | intcomma}}{% else %}0.00{% endif %}';
+            } else {
+                balanceElement.classList.add("hidden");
+                toggleButton.innerHTML = '<ion-icon name="eye-off-outline"></ion-icon>';
+                balanceElement.textContent = '*********';
+            }
+        }
+    </script>
+{% endblock %}

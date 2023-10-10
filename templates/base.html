@@ -1,0 +1,393 @@
+<!-- meta tags and other links -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Company Name. - Home</title>
+    <meta name="title" Content="CompanyName. - Home">
+    <meta name="description" content="Company Name  is a complete Online-Banking system. We have account-holders from almost all over the world. This is getting popular day by day. Our system is secure and robust. You may feel safe about your deposited funds.">
+    <meta name="keywords" content="bank,e-banking,digital banking,digital bank,laon,deposit,fdr,dps,cmb,uk bank,Company Name,morgancapitals,,inc">
+    <link rel="shortcut icon" href="{% static 'assets/images/logoIcon/favicon.png' %}" type="image/x-icon">
+
+    
+    <link rel="apple-touch-icon" href="{% static 'assets/images/logoIcon/logo.png' %}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="CompanyName. - Home">
+    
+    <meta itemprop="name" content="CompanyName. - Home">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="{% static 'assets/images/seo/643c621cb03461681678876.jpg' %}">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Company Name  is a complete Online-Banking system. We have account-holders from almost all over the world. This is getting popular day by day">
+    <meta property="og:description" content="Company Name  is a complete Online-Banking system. We have account-holders from almost all over the world. This is getting popular day by day">
+    <meta property="og:image" content="{% static 'assets/images/seo/643c621cb03461681678876.jpg' %}"/>
+    <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="1180" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:url" content="{% url 'home' %}">
+    
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link href="{% static 'assets/global/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/global/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/global/css/line-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/templates/basic/css/slick.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/templates/basic/css/lightcase.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/templates/basic/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/templates/basic/css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/templates/basic/css/color.css' %}" rel="stylesheet">
+    
+
+    <style>
+		#preloader {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 99999;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      background: #14233c;
+      display: table;
+      text-align: center;
+    }
+    
+    .loader {
+      display: table-cell;
+      vertical-align: middle;
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+    
+    .loader-icon {
+      width: 80px;
+      height: 80px;
+      border: 5px solid #002333;
+      border-right-color: #eee;
+      border-radius: 50%;
+      position: relative;
+      animation: loader-rotate 1s linear infinite;
+      margin: 0 auto;
+    }
+    
+    @keyframes loader-rotate {
+      0% {
+        transform: rotate(0);
+      }
+    
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hide-preloader {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    }
+   
+	</style>
+
+    </head>
+
+<body>
+
+    <div id="preloader">
+        <div class="row loader">
+            <div class="loader-icon"></div>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+            <!--Start of Tawk.to Script-->
+
+            
+<header class="header">
+
+    <div class="header__bottom">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg align-items-center justify-content-between p-0">
+                <a class="site-logo site-title" href="{% url 'home' %}">
+                    {% comment %} <img src="{% static 'assets/images/logoIcon/logo.png' %}" alt="logo"> {% endcomment %}
+                    <h2 style="color:white;">Logo</h2>
+                </a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="menu-toggle"></span>
+                </button>
+                <div class="collapse navbar-collapse mt-xl-0 mt-3" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav main-menu m-auto" id="linkItem">
+                                                    <li><a class="{% if '/' == request.path %} active{% endif %}" href="{% url 'home' %}">Home</a></li>
+    <li>
+        <a class="{% if '/about' == request.path %} active{% endif %}" href="{% url 'about' %}">
+            About Us
+        </a>
+    </li>
+    <li>
+        <a class="{% if '/services' == request.path %} active{% endif %}" href="{% url 'services' %}">
+            Services
+        </a>
+    </li>
+    <li>
+        <a class="{% if '/faq' == request.path %} active{% endif %}" href="{% url 'faq' %}">
+            FAQ
+        </a>
+    </li>
+    <li><a class="{% if '/contact' == request.path %} active{% endif %}" href="{% url 'contact' %}">Contact</a></li>
+    </ul>
+
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+                <a class="btn btn-sm custom--bg py-2 text-white" href="{% url 'account:dashboard' %}">Dashboard</a>
+                <a class="btn btn-sm btn-outline--gradient me-3 py-2" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a class="btn btn-sm btn-outline--gradient me-3 py-2" href="{% url 'sign_in' %}">Login Account</a>
+                <a class="btn btn-sm custom--bg py-2 text-white" href="{% url 'sign_up' %}">Open Account</a>
+            {% endif %}
+        </div>
+    </div>
+        </nav>
+    </div>
+    </div>
+</header>
+
+{% block content %}{% endblock %}
+<!-- TradingView Widget END -->
+<footer class="footer position-relative z-index-2">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-4 col-sm-6 order-lg-1 order-1">
+                <div class="footer-widget">
+                    <h3 class="footer-widget__title">About Us</h3>
+                    <p>Company bank is a complete Online-Banking system. We have account-holders from almost all over the world. This is getting popular day by day. Our system is secure and robust. You may feel safe about your deposited funds.</p>
+                        {% comment %} <ul class="social-media-links d-flex align-items-center mt-3">
+                                                    <li>
+                                <a href="" target="_blank">
+                                    <i class="fab fa-linkedin-in"></i>                                </a>
+                            </li>
+                                                    <li>
+                                <a href="" target="_blank">
+                                    <i class="fab fa-instagram"></i>                                </a>
+                            </li>
+                                                    <li>
+                                <a href="" target="_blank">
+                                    <i class="fab fa-twitter"></i>                                </a>
+                            </li>
+                                                    <li>
+                                <a href="" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>                                </a>
+                            </li>
+                        </ul> {% endcomment %}
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 order-lg-2 order-3">
+                <div class="footer-widget">
+                    <h3 class="footer-widget__title">Quick Links</h3>
+                    <ul class="short-link-list">    
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'account:dashboard' %}">Dashboard</a></li>
+                        {% else %}
+                        <li><a href="{% url 'sign_up' %}">Register</a></li>     
+                        <li><a href="{% url 'sign_in' %}">Login</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                        <li><a href="{% url 'terms' %}">Company Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 order-lg-3 order-4">
+                <div class="footer-widget">
+                    <h3 class="footer-widget__title">Page</h3>
+                    <ul class="short-link-list">
+                        <li>
+                            <a href="{% url 'about' %}">About Us</a>
+                        </li>
+                              
+                        <li>
+                            <a href="{% url 'faq' %}">FAQs</a>
+                        </li>  
+                        <li>
+                            <a href="{% url 'services' %}">Services</a>
+                        </li>   
+                        <li>
+                            <div class="py-2 me-3">
+                                <div id="google_translate_element"></div>
+    
+                                <script type="text/javascript">
+                                    function googleTranslateElementInit() {
+                                      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                                    }
+                                    </script>
+                                    
+                                    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                                    
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+            <div class="col-lg-4 col-sm-6 order-lg-4 order-2">
+                <div class="footer-widget">
+                    <h3 class="footer-widget__title">Contact Us</h3>
+                    <ul class="footer-info-list">
+                                                    <li>
+                                <i class="fas fa-map-marked"></i>                                <p>Location</p>
+                            </li>
+                                                    <li>
+                                <i class="fas fa-envelope"></i>                                <p>info@Company Name</p>
+                            </li>
+                                                    <li>
+                                <i class="fas fa-phone"></i>                                <p>+Number</p>
+                            </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="row gy-4 align-items-center">
+                <div class="col-lg-3 col-sm-6 order-lg-1 text-sm-start order-1 text-center">
+                    <a class="footer-logo" href="{% url 'home' %}"><img src="{% static 'assets/images/logoIcon/logo.png' %}" alt="logo"></a>
+                </div>
+
+                <div class="col-lg-9 col-sm-6 order-lg-3 text-sm-end order-2 text-center">
+                    <p>Copyright © 2018-2023 CompanyName. All Right Reserved</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    {% comment %} <div class="cookies-card hide text-center">
+        <div class="cookies-card__icon bg--base">
+            <i class="las la-cookie-bite"></i>
+        </div>
+        <p class="cookies-card__content mt-4">We may use cookies or any other tracking technologies when you visit our website, including any other media form, mobile website, or mobile application related or connected to help customize the Site and improve your experience <a href="" target="_blank">learn more</a></p>
+        <div class="cookies-card__btn mt-4">
+            <a class="btn btn--base w-100 policy" href="javascript:void(0)">Allow</a>
+        </div>
+    </div> {% endcomment %}
+
+    </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function () {
+          var preloader = document.getElementById('preloader');
+          setTimeout(function () {
+            preloader.classList.add('hide-preloader');
+          }, 500);
+        });
+       
+    </script>
+    
+    <script src="{% static 'assets/global/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/global/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/templates/basic/js/lightcase.js' %}"></script>
+    <script src="{% static 'assets/templates/basic/js/slick.min.js' %}"></script>
+    <script src="{% static 'assets/templates/basic/js/wow.min.js' %}"></script>
+    <script src="{% static 'assets/templates/basic/js/jquery.validate.js' %}"></script>
+    <script src="{% static 'assets/templates/basic/js/main.js' %}"></script>
+
+    
+        <script>
+        "use strict";
+        (function($) {
+            var form = $("#subscribeForm");
+            form.on('submit', function(e) {
+                e.preventDefault();
+                var data = form.serialize();
+                $.ajax({
+                    url: `/subscribe`,
+                    method: 'post',
+                    data: data,
+                    success: function(response) {
+                        if (response.success) {
+                            form.find('input[name=email]').val('');
+                            notify('success', response.message);
+                        } else {
+                            notify('error', response.error);
+                        }
+                    }
+                });
+            });
+        })(jQuery);
+    </script>
+
+    
+    <script>
+        "use strict";
+        (function($) {
+
+            $(".langSel").on("change", function() {
+                window.location.href = "https://Company Name/change/" + $(this).val();
+            });
+
+            setTimeout(function() {
+                $('.cookies-card').removeClass('hide')
+            }, 2000);
+
+            $('.policy').on('click', function() {
+                $.get(`https://Company Name/cookie/accept`, function(response) {
+                    $('.cookies-card').addClass('d-none');
+                });
+            });
+
+            $('form').on('submit', function() {
+                if ($(this).valid()) {
+                    $(':submit', this).attr('disabled', 'disabled');
+                }
+            });
+
+            var inputElements = $('[type=text],[type=password],select,textarea');
+
+            $.each(inputElements, function(index, element) {
+                element = $(element);
+                element.closest('.form-group').find('label').attr('for', element.attr('name'));
+                element.attr('id', element.attr('name'))
+            });
+
+            $.each($('input, select, textarea'), function(i, element) {
+                var elementType = $(element);
+                if (elementType.attr('type') != 'checkbox' && element.hasAttribute('required')) {
+                    $(element).closest('.form-group').find('label').addClass('required');
+                }
+            });
+
+            $('.showFilterBtn').on('click', function() {
+                $('.responsive-filter-card').slideToggle();
+            });
+
+            Array.from(document.querySelectorAll('table')).forEach(table => {
+                let heading = table.querySelectorAll('thead tr th');
+                Array.from(table.querySelectorAll('tbody tr')).forEach((row) => {
+                    Array.from(row.querySelectorAll('td')).forEach((colum, i) => {
+                        colum.setAttribute('data-label', heading[i].innerText)
+                    });
+                });
+            });
+
+        })(jQuery);
+    </script>
+    <link rel="stylesheet" href="{% static 'assets/global/css/iziToast.min.css' %}">
+<script src="{% static 'assets/global/js/iziToast.min.js' %}"></script>
+
+<script>
+    "use strict";
+
+    function notify(status, message) {
+        iziToast[status]({
+            message: message,
+            position: "topRight"
+        });
+    }
+</script>
+</body>
+
+</html>

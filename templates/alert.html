@@ -1,0 +1,51 @@
+
+{% if messages %}
+    {% for message in messages %}
+    <div id="message" class="container">
+        <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+            <!-- <button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">&times;</span></button> -->
+            <strong>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    ERROR
+                {% else %}
+                    {{ message.tags|title }}
+                {% endif %}
+            </strong>
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
+
+
+<script>
+    // Function to vibrate the window
+    function vibrateWindow() {
+        if ('vibrate' in window.navigator) {
+            window.navigator.vibrate([200, 100, 200]);
+        }
+    }
+    
+    // Loop through each message element and apply fading out
+    document.addEventListener('DOMContentLoaded', function() {
+        var messageElements = document.querySelectorAll('.alert');
+        
+        messageElements.forEach(function(element) {
+            setTimeout(function() {
+                element.style.transition = 'opacity 0.5s';
+                element.style.opacity = '0';
+                
+                setTimeout(function() {
+                    element.style.display = 'none';
+                }, 5000);
+                
+                vibrateWindow(); // Vibrate the window when message appears
+            }, 5000);
+        });
+    });
+    </script>
+
+{% comment %} <script>setTimeout(function(){
+    $('#message').fadeOut('slow');
+}, 2000);</script> {% endcomment %}
+

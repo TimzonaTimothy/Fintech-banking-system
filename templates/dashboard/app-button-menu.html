@@ -1,0 +1,27 @@
+<div class="appBottomMenu">
+    <a href="{% url 'account:dashboard' %}" class="item {% if '/account/dashboard' == request.path %} active{% endif %}">
+        <div class="col">
+            <ion-icon name="pie-chart-outline"></ion-icon>
+            <strong>Overview</strong>
+        </div>
+    </a>
+    <a href="{% url 'core:transactions' %}" class="item {% if '/transactions' == request.path %} active{% endif %}">
+        <div class="col">
+            <ion-icon name="swap-horizontal-outline"></ion-icon>
+            <strong>Transactions</strong>
+        </div>
+    </a>
+    {% comment %} <a href="app-components.html" class="item">
+        <div class="col">
+            <ion-icon name="apps-outline"></ion-icon>
+            <strong>Notifications</strong>
+        </div>
+    </a> {% endcomment %}
+    
+    <a href="{% url 'account:settings' %}" class="item {% if '/account/settings' == request.path %} active{% endif %}">
+        <div class="col">
+            <ion-icon name="settings-outline"></ion-icon>
+            <strong>Settings</strong>
+        </div>
+    </a>
+</div>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .money-in {
+            color: green;
+        }
+
+        .money-out {
+            color: red;
+        }
+    </style>
+    <title>Transaction Statement</title>
+</head>
+<body>
+    <div style="text-align:center;">
+        <h1>Transaction Statement</h1>
+        <p>
+            <strong>Names:</strong> {{ transaction.recipient.full_name|title }}<br>
+            <strong>Email:</strong> {{ transaction.recipient.email|title }}<br>
+        </p>
+    </div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Sender</th>
+                <th>Recipient</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td>{{ transaction.created_at|date:"F j, Y" }}</td>
+                {% if transaction.description == 'False' %}
+                <td>Null</td>
+                {% else %}
+                <td>{{ transaction.description }}</td>
+                {% endif %}
+                <td>{{ transaction.sender.full_name }}</td>
+                <td>{{ transaction.recipient.full_name }}</td>
+                <td>{{ transaction.amount }}</td>
+            </tr>
+           
+        </tbody>
+    </table>
+</body>
+</html>

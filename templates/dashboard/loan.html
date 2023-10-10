@@ -1,0 +1,107 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="appHeader">
+    <div class="left">
+        <a href="{% url 'account:dashboard' %}" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+        Loan
+    </div>
+   
+</div>
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+        {% include 'dashboard/alert.html' %}
+
+        <div class="section mt-3 text-center">
+            <div class="avatar-section">
+                <h1>Apply For Loan</h1>
+            </div>
+           
+        </div>
+        <div class="container-fluid">
+
+            
+            <form method="POST">
+
+                {% csrf_token %}
+                    <div class="form-group basic">
+                        <label class="label">Amount</label>
+                        <div class="input-group mb-2">
+    
+                            <input type="number" class="form-control" name="amount" id="text11d" 
+                             required='required'  placeholder="Amount">
+                                    
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <label class="label">Term</label>
+                        <div class="input-group mb-2">
+    
+                            <input type="number" class="form-control" name="term" id="text11d" 
+                             required='required'  placeholder="Term">
+                                    
+                        </div>
+                    </div>
+    
+                <div class="form-group basic">
+                    <button type="submit" class="btn btn-primary btn-block btn-lg"
+                    onclick="return confirm('Confirm?')" >Submit</button>
+                </div>
+            </form>
+
+
+            <div class="section-heading mt-2">
+                <h2 class="title">Loans Requested</h2>
+                
+            </div>
+
+            {% if loans %}
+            <div class="transactions mt-2">
+            {% for loan in loans %}
+            <a class="item mt-2">
+                <div class="detail">
+                    
+                    
+                    <div>
+                        <strong>{{ loan.user.full_name }}</strong>
+                        <p>Date Applied <span>{{ loan.date_applied }}</span></p>
+                        {% if loan.status == 'Pending' %}
+                        <p>Status <span class="text-primary">{{ loan.status }}</span></p> 
+                        {% endif %}
+                        {% if loan.status == 'Approved' %}
+                        <p>Status <span class="text-success">{{ loan.status }}</span></p> 
+                        {% endif %}
+                        {% if loan.status == 'Rejected' %}
+                        <p>Status <span class="text-danger">{{ loan.status }}</span></p> 
+                        {% endif %}
+                        {% if loan.status == 'Repaid' %}
+                        <p>Status <span class="text-secondary">{{ loan.status }}</span></p> 
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="price"> -${{ loan.amount }}</div>
+                </div>
+            </a>
+            
+            {% endfor %}
+            {% else %}
+            <div class="container-fluid mt-2">
+                <p>No loans made</p>
+            </div>
+            {% endif %}
+        </div>
+        </div>
+
+    </div>
+    <!-- * App Capsule -->
+
+
+{% endblock %}

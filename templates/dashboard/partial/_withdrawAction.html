@@ -1,0 +1,39 @@
+{% comment %} {% include 'dashboard/alert.html' %} {% endcomment %}
+
+<div class="modal fade action-sheet" id="withdrawActionSheet" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius:10px;">
+            <div class="modal-header">
+                <h5 class="modal-title">Withdraw Money</h5>
+            </div>
+            <div class="modal-body">
+                <div class="action-sheet-content">
+                    <form method="POST" action="{% url 'core:withdrawal' %}">
+                        {% csrf_token %}
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <label class="label" for="text11d">PIN</label>
+                                <input type="text" name='pin' class="form-control" id="text11d" required='required' placeholder="Enter PIN" style="color: transparent; background-color: white;">
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group basic">
+                            <label class="label">Enter Amount</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addonb1">$</span>
+                                <input type="number" name='amount' class="form-control" placeholder="Enter an amount"
+                                min="100.00" max="100000000000.00" required='required'>
+                            </div>
+                        </div>
+
+                        <div class="form-group basic">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg"
+                                onclick="return confirm('Are you sure you want to proceed?')">Withdraw</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,136 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+        {% include 'dashboard/alert.html' %}
+        <div class="section mt-3 text-center">
+            <div class="avatar-section">
+                <h1>Profile Details</h1>
+            </div>
+           
+        </div>
+
+        
+        {% if request.user.profile_picture %}
+        <div class="section mt-3 text-center">
+            <div class="avatar-section">
+                <a href="#">
+                    
+                    <img src="{{request.user.profile_picture.url}}"  alt="avatar" class="imaged w100 rounded">
+                    
+                    {% comment %} <span class="button">
+                        <ion-icon name="camera-outline"></ion-icon>
+                    </span> {% endcomment %}
+                </a>
+            </div>
+        </div>
+        {% else %}
+        <div class="section mt-3 text-center">
+            <div class="avatar-section">
+                <a href="#">
+                    
+                    <img src="{% static 'user.png' %}"  alt="avatar" class="imaged w100 rounded">
+                
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
+
+        <div class="container-fluid">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="form-group basic">
+                        <label class="label">First Name</label>
+                        <div class="input-group mb-2">
+    
+                            <input type="text" class="form-control" name="first_name"
+                                value="{% if request.user.first_name %}{{request.user.first_name}}{% endif %}">
+                                    
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <label class="label">Last Name</label>
+                        <div class="input-group mb-2">
+    
+                            <input type="text" class="form-control" name="last_name"
+                                value="{% if request.user.first_name %}{{request.user.last_name}}{% endif %}">
+                                    
+                        </div>
+                    </div>
+                    
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">Phone</label>
+                            <input type="number" name='phone' class="form-control" id="text11d" 
+                            value="{% if request.user.phone %}{{request.user.phone}}{% endif %}" placeholder="Enter Phone">
+                            
+                        </div>
+                    </div>
+
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">Date Of Birth</label>
+                            <input type="date" class="form-control" id="text11d" name="date_of_birth"
+                            value="{% if request.user.date_of_birth %}{{request.user.date_of_birth}}{% else %}{% endif %}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group basic">
+                        <label class="label">Gender</label>
+                        <div class="input-group mb-2">
+                         
+                            <select name="gender" class="form-control custom-select" id="account2d">
+                                <option value="" selected disabled>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <label class="label">City</label>
+                        <div class="input-group mb-2">
+                            
+                            <input name="city"  type="text" class="form-control" 
+                            value="{% if request.user.city %}{{request.user.city}}{% endif %}" placeholder="Enter City">
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <label class="label">State</label>
+                        <div class="input-group mb-2">
+                            
+                            <input  name="state"  type="text" class="form-control"
+                            value="{% if request.user.state %}{{request.user.state}}{% endif %}" placeholder="Enter State">
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <label class="label">Country</label>
+                        <div class="input-group mb-2">
+                            
+                            <input name="country"  type="text" class="form-control"
+                            value="{% if request.user.country %}{{request.user.country}}{% endif %}" placeholder="Enter Country">
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">Profile Picture</label>
+                            <input type="file" class="form-control" id="text11d" name="profile_picture"> 
+                        </div>
+                    </div>
+    
+    
+                    <div class="form-group basic">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg"
+                        onclick="return confirm('Confirm?')">Update</button>
+                    </div>
+                </form>
+        </div>
+
+    </div>
+    <!-- * App Capsule -->
+
+{% endblock %}

@@ -1,0 +1,580 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="main-wrapper">
+                    
+    <section class="hero bg_img" style="background-image: url('{% static 'assets/images/frontend/banner/60c756944f1271623676564.jpg' %});">
+        <div class="hero__wave-shape">
+            <img src="{% static 'assets/templates/basic/images/elements/white-wave-1.png' %}" alt="wave image">
+        </div>
+        <div class="hero__wave-shape two">
+            <img src="{% static 'assets/templates/basic/images/elements/white-wave-1.png' %}" alt="wave image">
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-9 text-center">
+                    <h2 class="hero__title text-white wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                        Welcome to the Largest Online,Offshore-banking System
+                    </h2>
+                    <p class="text-white mt-4 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                        MORGAN CAPITAL BANK is a safe, fast, easy, and efficient Online-Banking system that enables you access to your bank account and to carry out online banking services, 24/7
+                    </p>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'account:dashboard' %}" class="btn custom--bg text-white mt-4 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                        Dashboard
+                    </a>
+                    {% else %}
+                    <a href="{% url 'sign_up' %}" class="btn custom--bg text-white mt-4 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                        Create an Account
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+                        <div class="feature-section pb-100">
+    <div class="container">
+        <div class="row gy-4">
+                        <div class="col-xl-3 col-sm-6 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="feature-card rounded-3">
+                    <div class="icon">
+                        <i class="fas fa-file-invoice-dollar"></i>                    </div>
+                    <h3 class="title">Online Payment</h3>
+                    <p>We have online payment BTC,PAYPAL etc.</p>
+                </div>
+            </div>
+                        <div class="col-xl-3 col-sm-6 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="feature-card rounded-3">
+                    <div class="icon">
+                        <i class="fas fa-coins"></i>                    </div>
+                    <h3 class="title">Take Loan</h3>
+                    <p>We have several plans to apply for a loan. You may apply to our loan plans by submitting some of your valid information.</p>
+                </div>
+            </div>
+                        <div class="col-xl-3 col-sm-6 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="feature-card rounded-3">
+                    <div class="icon">
+                        <i class="fas fa-wallet"></i>                    </div>
+                    <h3 class="title">Deposit Schemes</h3>
+                    <p>We have two deposit schemes for you, one is Deposit Pension Scheme and another one is the Fixed Deposit Receipt.</p>
+                </div>
+            </div>
+                        <div class="col-xl-3 col-sm-6 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="feature-card rounded-3">
+                    <div class="icon">
+                        <i class="fas fa-exchange-alt"></i>                    </div>
+                    <h3 class="title">Transfer Money</h3>
+                    <p>You are able to transfer your funds within the CMB or other banks we support by adding your beneficiaries</p>
+                </div>
+            </div>
+                    </div>
+    </div>
+</div>
+                    <section id="about" class="pt-100 pb-50 section--bg">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-lg-6">
+                    <div class="about-thumb rounded-3">
+                        <img src="{% static 'assets/images/frontend/about/60c75675a19651623676533.jpg' %}" alt="image">
+                        <a href="" data-rel="lightcase:myCollection" class="video-icon wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                            <i class="las la-play"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <div class="section-header">
+                        <div class="section-top-title border-left custom--cl">About Us</div>
+                        <h2 class="section-title">We care about your money and safety.</h2>
+                    </div>
+                    <div class="row gy-4">
+                                                    <div class="col-xxl-8 col-xl-10 wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                                <div class="about-card">
+                                    <div class="about-card__icon rounded-3 custom--bg">
+                                        <i class="las la-hourglass-start"></i>                                    </div>
+                                    <div class="about-card__content">
+                                        <h4 class="title">Our Mission</h4>
+                                        <p>We are focused on building and sustaining long-term generational relationships with our customers</p>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="col-xxl-8 col-xl-10 wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                                <div class="about-card">
+                                    <div class="about-card__icon rounded-3 custom--bg">
+                                        <i class="far fa-eye"></i>                                    </div>
+                                    <div class="about-card__content">
+                                        <h4 class="title">Our Vision</h4>
+                                        <p>Morgan Capitals will serve all over the world and becomes the most popular Bank in this universe.</p>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="col-xxl-8 col-xl-10 wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                                <div class="about-card">
+                                    <div class="about-card__icon rounded-3 custom--bg">
+                                        <i class="las la-bullseye"></i>                                    </div>
+                                    <div class="about-card__content">
+                                        <h4 class="title">Our Goal</h4>
+                                        <p>CMB will serve their customers from all over the world and becomes the popular bank in this universe.</p>
+                                    </div>
+                                </div>
+                            </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                    <section id="services" class="service-section position-relative z-index-2 pt-50 pb-100">
+    <div class="top-wave">
+        <img src="{% static 'assets/templates/basic/images/elements/white-wave-2.png' %}" alt="wave image">
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xxl-7 col-xl-8 col-lg-10">
+                <div class="section-header text-center">
+                    <div class="section-top-title border-left custom--cl">Our Services</div>
+                    <h2 class="section-title">We make your life comfortable with our services.</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center gy-4">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="service-card rounded-3">
+                    <div class="service-card__icon rounded-2 custom--cl">
+                        <i class="las la-exchange-alt"></i>                    </div>
+                    <div class="service-card__content">
+                        <h3 class="title">Fast Transfer</h3>
+                        <p class="mt-2">Our Money transfer system is secure and easy. Send your funds to your beneficiaries within CMB BANK or to other banks. Transfer within CMB BANK is instant and to other banks may take 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="service-card rounded-3">
+                    <div class="service-card__icon rounded-2 custom--cl">
+                        <i class="fas fa-credit-card"></i>                    </div>
+                    <div class="service-card__content">
+                        <h3 class="title">Deposit Funds</h3>
+                        <p class="mt-2">Account-holders of CMB BANK are able to deposit their money through our several payment systems. We have online payment services like PayPal, BTC etc.</p>
+                    </div>
+                </div>
+            </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="service-card rounded-3">
+                    <div class="service-card__icon rounded-2 custom--cl">
+                        <i class="fas fa-money-check-alt"></i>                    </div>
+                    <div class="service-card__content">
+                        <h3 class="title">Withdraw Funds</h3>
+                        <p class="mt-2">Account-holders of CMB BANAK are able to withdraw money from their account. Without verification, any withdrawal won&#039;t be completed, so you can trust CMB BANK.</p>
+                    </div>
+                </div>
+            </div>
+                    </div>
+    </div>
+</section>
+                    <section class="pt-100 pb-50 bg_img dark--overlay-two" style="background-image: url('{% static 'assets/images/frontend/why_choose/60d497b25b98a1624545202.jpg');">
+    <div class="bottom-wave d-lg-block d-none">
+        <img src="{% static 'assets/templates/basic/images/elements/white-wave-1.png' %}" alt="wave image">
+    </div>
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-xl-3 text-xl-start text-center">
+                <div class="section-header">
+                    <div class="section-top-title border-left custom--cl">Why Choose Us?</div>
+                    <h2 class="section-title text-white">We are giving you the best services</h2>
+                    <a href="register" class="btn mt-4 custom--bg text-white">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-9">
+                <div class="row gy-4">
+                                        <div class="col-md-6 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                        <div class="choose-card rounded-3">
+                            <div class="choose-card__icon">
+                                <i class="las la-user-shield"></i>                            </div>
+                            <div class="choose-card__content">
+                                <h3 class="title">Secure Service</h3>
+                                <p>Every balance subtracting transactions need OTP verification so You can feel safe about your funds. Also, you can use the google authenticator app on your cellphone and enable 2FA security from the account menu.</p>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class="col-md-6 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                        <div class="choose-card rounded-3">
+                            <div class="choose-card__icon">
+                                <i class="fas fa-file-invoice-dollar"></i>                            </div>
+                            <div class="choose-card__content">
+                                <h3 class="title">Lowest Transaction Fee</h3>
+                                <p>Our transaction fee is much low comparing to other banks. You can deposit, transfer, and withdraw your funds with the lowest transaction charge. As our transfer system is secure and robust you can trust us.</p>
+                            </div>
+                        </div>
+                    </div>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+                    <section id="how-work" class="pt-50 pb-50 section--bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-header text-center">
+                    <div class="section-top-title border-left custom--cl">How it works</div>
+                    <h2 class="section-title">It&#039;s easy to join with Us</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-4">
+                        <div class="col-lg-3 col-sm-6 how-work-item wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="how-work-card">
+                    <div class="how-work-card__step">1</div>
+                    <h3 class="title mt-4">Open an Account</h3>
+                    <p class="mt-2">To be an account holder you have to open an account first.</p>
+                </div>
+            </div>
+                        <div class="col-lg-3 col-sm-6 how-work-item wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="how-work-card">
+                    <div class="how-work-card__step">2</div>
+                    <h3 class="title mt-4">Verification</h3>
+                    <p class="mt-2">After registration you need to verify your Email and Mobile Number.</p>
+                </div>
+            </div>
+                        <div class="col-lg-3 col-sm-6 how-work-item wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="how-work-card">
+                    <div class="how-work-card__step">3</div>
+                    <h3 class="title mt-4">Deposit</h3>
+                    <p class="mt-2">Deposit some funds before applying on any FDR or DPS plans.</p>
+                </div>
+            </div>
+                        <div class="col-lg-3 col-sm-6 how-work-item wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                <div class="how-work-card">
+                    <div class="how-work-card__step">4</div>
+                    <h3 class="title mt-4">Get Service</h3>
+                    <p class="mt-2">Now you can get any of our services as our registered account-holder</p>
+                </div>
+            </div>
+                    </div>
+    </div>
+</section>
+                                                                                <section class="overview-section pt-100 pb-50">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+                <div class="section-header text-center">
+                    <h2 class="section-title text-white">We provide our banking services all over the world</h2>
+                    <p class="mt-3 text-white">Morgan capitals Bank is a secure and robust e-Banking system getting popular all over the world nowadays. We offer the best FDR, DPS &amp;amp; Loan plans to our account holders</p>
+                </div>
+            </div>
+        </div>
+        <div class="overview-area wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+            <div class="row gy-4 justify-content-center">
+                                <div class="col-lg-3 col-6">
+                    <div class="overview-card">
+                        <div class="overview-card__icon">
+                            <i class="las la-user-circle"></i>                        </div>
+                        <div class="overview-card__content">
+                            <h4 class="couter-number">24M</h4>
+                            <p>Account Holders</p>
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-lg-3 col-6">
+                    <div class="overview-card">
+                        <div class="overview-card__icon">
+                            <i class="las la-coins"></i>                        </div>
+                        <div class="overview-card__content">
+                            <h4 class="couter-number">3B</h4>
+                            <p>Total Transaction</p>
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-lg-3 col-6">
+                    <div class="overview-card">
+                        <div class="overview-card__icon">
+                            <i class="las la-project-diagram"></i>                        </div>
+                        <div class="overview-card__content">
+                            <h4 class="couter-number">12</h4>
+                            <p>Total Branches</p>
+                        </div>
+                    </div>
+                </div>
+                                <div class="col-lg-3 col-6">
+                    <div class="overview-card">
+                        <div class="overview-card__icon">
+                            <i class="las la-globe-africa"></i>                        </div>
+                        <div class="overview-card__content">
+                            <h4 class="couter-number">240+</h4>
+                            <p>Countries We Serve</p>
+                        </div>
+                    </div>
+                </div>
+                            </div>
+        </div>
+    </div>
+</section>
+                    <section class="testimonial-section pt-50 pb-100">
+    <div class="container">
+        <div class="testimonial-slider wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                        <div class="single-slide">
+                <div class="testimonial-item">
+                    <div class="ratings">
+                        <i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i>                    </div>
+                    <p class="text-white mt-2">I had opened an account 5 years ago, I feel safe keeping my funds in CMB. Their Deposit schemes plans are really helpful.</p>
+                    <div class="d-flex align-items-center mt-4">
+                        <h4 class="name text-white">Adam Gilly</h4>
+                        <span class="designation text-white-50 ms-3 fs--14px">
+                            CTO, UYT
+                        </span>
+                    </div>
+                </div>
+            </div>
+                        <div class="single-slide">
+                <div class="testimonial-item">
+                    <div class="ratings">
+                        <i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i>                    </div>
+                    <p class="text-white mt-2">The is just awesome,  best quality service ever I had. You can trust them and deposit your funds. Their Loan plans are really helpful</p>
+                    <div class="d-flex align-items-center mt-4">
+                        <h4 class="name text-white">Maria Ahsan</h4>
+                        <span class="designation text-white-50 ms-3 fs--14px">
+                            Managing Director, YY
+                        </span>
+                    </div>
+                </div>
+            </div>
+                        <div class="single-slide">
+                <div class="testimonial-item">
+                    <div class="ratings">
+                        <i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i>                    </div>
+                    <p class="text-white mt-2">I had opened an account 3 years ago, I feel safe keeping my funds in CMB. Their Deposit schemes plans are really helpful</p>
+                    <div class="d-flex align-items-center mt-4">
+                        <h4 class="name text-white">Michel Johnson</h4>
+                        <span class="designation text-white-50 ms-3 fs--14px">
+                            Founder of WWC
+                        </span>
+                    </div>
+                </div>
+            </div>
+                        <div class="single-slide">
+                <div class="testimonial-item">
+                    <div class="ratings">
+                        <i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i><i class="la la-star"></i>                    </div>
+                    <p class="text-white mt-2">Best quality service ever I had. The money transfer system is just awesome. The beneficiary listing system makes it quite efficient.</p>
+                    <div class="d-flex align-items-center mt-4">
+                        <h4 class="name text-white">John Smith</h4>
+                        <span class="designation text-white-50 ms-3 fs--14px">
+                            CEO of MAINTRACTORS
+                        </span>
+                    </div>
+                </div>
+            </div>
+                    </div>
+    </div>
+</section>
+                    <section id="faq" class="pt-80 pb-80 section--bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xxl-5 col-lg-7 wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                    <div class="section-header text-center">
+                        <h2 class="section-title">Frequently Asked Questions</h2>
+                        <p class="mt-2">Though we have provided lots of information about us and how we serve what is our working process our terms and conditions our policies etc.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion custom--accordion" id="faqAccordion">
+                <div class="row gy-4 justify-content-center">
+                                            <div class="col-lg-6 wow fadeInRight " data-wow-duration="0.5s" data-wow-delay="0.3s">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="h-71">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-71" aria-expanded="false" aria-controls="c-71">
+                                        Is opening an account is free?
+                                    </button>
+                                </h2>
+                                <div id="c-71" class="accordion-collapse collapse" aria-labelledby="h-71" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Yes, we don&#039;t take any fees for opening an account.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-lg-6 wow fadeInRight " data-wow-duration="0.5s" data-wow-delay="0.3s">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="h-72">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-72" aria-expanded="false" aria-controls="c-72">
+                                        Is it possible to send money from morgan capitals bank inc to another bank?
+                                    </button>
+                                </h2>
+                                <div id="c-72" class="accordion-collapse collapse" aria-labelledby="h-72" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Yes, you can send money from morgan capitals to another bank?</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-lg-6 wow fadeInRight " data-wow-duration="0.5s" data-wow-delay="0.3s">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="h-88">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-88" aria-expanded="false" aria-controls="c-88">
+                                        How to open an account?
+                                    </button>
+                                </h2>
+                                <div id="c-88" class="accordion-collapse collapse" aria-labelledby="h-88" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Get the registration form by clicking on the Sing Up button on the top bar. Provide all information and click on the Sign Up button.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-lg-6 wow fadeInRight " data-wow-duration="0.5s" data-wow-delay="0.3s">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="h-89">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-89" aria-expanded="false" aria-controls="c-89">
+                                        Does morgan capitals bank share our information for advertisement?
+                                    </button>
+                                </h2>
+                                <div id="c-89" class="accordion-collapse collapse" aria-labelledby="h-89" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>No, we don&#039;t provide our account holder&#039;s information to any third-party organization.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-lg-6 wow fadeInRight " data-wow-duration="0.5s" data-wow-delay="0.3s">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="h-115">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-115" aria-expanded="false" aria-controls="c-115">
+                                        How to take a loan?
+                                    </button>
+                                </h2>
+                                <div id="c-115" class="accordion-collapse collapse" aria-labelledby="h-115" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>We have several loan plans. Choose the best plan suitable for you and just click on the Apply Now button and put the amount.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-lg-6 wow fadeInRight " data-wow-duration="0.5s" data-wow-delay="0.3s">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="h-122">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-122" aria-expanded="false" aria-controls="c-122">
+                                        How to open a FDR
+                                    </button>
+                                </h2>
+                                <div id="c-122" class="accordion-collapse collapse" aria-labelledby="h-122" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>We have several FDR plans. Choose the best plan suitable for you and just click on the Apply Now button and put the amount.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+        </div>
+    </section>
+                    <section class="pt-50 pb-50">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="section-header">
+                    <h2 class="section-title">Our Partners</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+            <div class="col-lg-12">
+                <div class="brand-slider">
+                                        <div class="single-slide">
+                        <div class="brand-item">
+                            <img src="{% static 'assets/images/frontend/partner_section/61000a7d441c71627392637.png' %}" alt="image">
+                        </div>
+                    </div>
+                                        <div class="single-slide">
+                        <div class="brand-item">
+                            <img src="{% static 'assets/images/frontend/partner_section/610009d71ce7c1627392471.png' %}" alt="image">
+                        </div>
+                    </div>
+                                        <div class="single-slide">
+                        <div class="brand-item">
+                            <img src="{% static 'assets/images/frontend/partner_section/61000905dec851627392261.png' %}" alt="image">
+                        </div>
+                    </div>
+                                        <div class="single-slide">
+                        <div class="brand-item">
+                            <img src="{% static 'assets/images/frontend/partner_section/610008c8078b71627392200.png' %}" alt="image">
+                        </div>
+                    </div>
+                                        <div class="single-slide">
+                        <div class="brand-item">
+                            <img src="{% static 'assets/images/frontend/partner_section/6100088e88e2d1627392142.png' %}" alt="image">
+                        </div>
+                    </div>
+                                        <div class="single-slide">
+                        <div class="brand-item">
+                            <img src="{% static 'assets/images/frontend/partner_section/6100084858a641627392072.png' %}" alt="image">
+                        </div>
+                    </div>
+                                        <div class="single-slide">
+                        <div class="brand-item">
+                            <img src="{% static 'assets/images/frontend/partner_section/610007f09805f1627391984.png' %}" alt="image">
+                        </div>
+                    </div>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+                    <section class="subscribe-section">
+        <div class="container">
+            <div class="row gy-3 justify-content-between align-items-center">
+                <div class="col-xxl-5 col-xl-6 col-lg-4 text-lg-start text-center wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                    <h4 class="text-white">Subscribe our newsletter and stay connected</h4>
+                </div>
+                <div class="col-xxl-7 col-xl-6 col-lg-8 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
+                    <form class="subscribe-form" id="subscribeForm">
+                        <input type="hidden" name="_token" value="">                        
+                        <div class="custom-icon-field">
+                            <input type="email" name="email" class="form-control form--control" placeholder="Enter email address">
+                            <i class="las la-envelope"></i>
+                        </div>
+                        <button type="submit" class="btn custom--bg h-auto">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+                    <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="" rel="noopener" target="_blank"><span class="blue-text">Markets today</span></a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "US 100"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR/USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "Bitcoin"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "Ethereum"
+    }
+  ],
+  "showSymbolLogo": true,
+  "colorTheme": "light",
+  "isTransparent": false,
+  "displayMode": "adaptive",
+  "locale": "en"
+}
+  </script>
+</div>
+</div>
+{% endblock %}

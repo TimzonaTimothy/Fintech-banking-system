@@ -1,0 +1,116 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+        {% include 'dashboard/alert.html' %}
+
+        {% if request.user.profile_picture %}
+        <div class="section mt-3 text-center">
+            <div class="avatar-section">
+                <a>
+                    
+                    <img src="{{request.user.profile_picture.url}}"  alt="avatar" class="imaged w100 rounded">
+                    
+                    {% comment %} <span class="button">
+                        <ion-icon name="camera-outline"></ion-icon>
+                    </span> {% endcomment %}
+                </a>
+            </div>
+        </div>
+        {% else %}
+        <div class="section mt-3 text-center">
+            <div class="avatar-section">
+                <a>
+                    <img src="{% static 'user.png' %}"  alt="avatar" class="imaged w100 rounded">
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="listview-title mt-1">Theme</div>
+        <ul class="listview image-listview text inset no-line">
+            <li>
+                <div class="item">
+                    <div class="in">
+                        <div>
+                            Dark Mode
+                        </div>
+                        <div class="form-check form-switch  ms-2">
+                            <input class="form-check-input dark-mode-switch" type="checkbox" id="darkmodeSwitch">
+                            <label class="form-check-label" for="darkmodeSwitch"></label>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+
+        <div class="listview-title mt-1">Profile Settings</div>
+        <ul class="listview image-listview text inset">
+            
+            <li>
+                <a href="{% url 'account:profile_details' %}" class="item">
+                    <div class="in">
+                        <div>Update Profile Details</div>
+                        <span class="text-primary">Edit</span>
+                    </div>
+                </a>
+            </li>
+            
+        </ul>
+
+        <div class="listview-title mt-1">Security</div>
+        <ul class="listview image-listview text mb-2 inset">
+            {% if not request.user.pin %}
+            <li>
+                <a href="{% url 'account:set_pin' %}" class="item">
+                    <div class="in">
+                        <div>Set Pin</div>
+                    </div>
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="{% url 'account:change_pin' %}" class="item">
+                    <div class="in">
+                        <div>Change Pin</div>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <div class="item">
+                    <div class="in">
+                        <div>
+                            2 Step Verification
+                        </div>
+                        <form id="two-step-form" method="POST" action="{% url 'account:two_step_verification' %}">
+                            {% csrf_token %}
+                            <div class="form-check form-switch ms-2">
+                                <input class="form-check-input" type="checkbox" name="two_step_verification" id="SwitchCheckDefault3" {% if request.user.two_step_verification %}checked{% endif %}/>
+                                <label class="form-check-label" for="SwitchCheckDefault3"></label>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+
+
+    </div>
+    <!-- * App Capsule -->
+
+    <script>
+        const form = document.getElementById('two-step-form');
+        const checkbox = document.getElementById('SwitchCheckDefault3');
+    
+        checkbox.addEventListener('change', () => {
+            form.submit();
+        });
+    </script>
+    
+{% endblock %}

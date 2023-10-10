@@ -1,0 +1,141 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="section mt-3 text-center">
+            <div class="avatar-section">
+                <h1>KYC</h1>
+            </div>
+            <div >
+                {% comment %} <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50"
+                    aria-valuemin="0" aria-valuemax="100">50%</div> {% endcomment %}
+                    
+            </div>
+                <p>Account Status 
+                    <span style="color:{% if request.user.status == 'ACTIVE' %}green{% elif request.user.status == 'PENDING' %}blue{% else %}red{% endif %}">
+                        {{request.user.status}}
+                    </span>
+                </p>
+        </div>
+        {% include 'dashboard/alert.html' %}
+
+        <div class="listview-title mt-1">KYC Form</div>
+        
+        <ul class="listview image-listview text inset no-line">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="container-fluid">
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">Passport</label>
+                            <input type="file" class="form-control" id="text11d" name="picture"  required='required'> 
+                        </div>
+                    </div>
+
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">Full Name</label>
+                            <input  required='required' type="text" class="form-control" id="text11d" name="full_name" placeholder="Enter FullName" 
+                            value="{% if request.user.full_name %}{{request.user.full_name}}{% else %}{% endif %}">
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">Phone Number</label>
+                            <input type="number" required='required' class="form-control" id="text11d" name="phone" placeholder="Enter Phone Number">
+                           
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="account2d"  required='required'>Gender</label>
+                            <select name="gender" required class="form-control custom-select" id="account2d">
+                                <option value="" selected disabled>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">City</label>
+                            <input type="text" required='required' class="form-control" id="text11d" name="city" placeholder="Enter City">
+                
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">State</label>
+                            <input type="text" required='required' class="form-control" id="text11d" name="state" placeholder="Enter State">
+                           
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">Country</label>
+                            <input type="text" class="form-control" id="text11d" name="country" placeholder="Enter Country" required='required'>
+                           
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">Date Of Birth</label>
+                            <input type="date" class="form-control" id="text11d" name="date_of_birth"
+                            value="{% if request.user.date_of_birth %}{{request.user.date_of_birth}}{% else %}{% endif %}" required='required'>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="account2d">Marrital Status</label>
+                            <select name="marrital_status" required class="form-control custom-select" id="account2d">
+                                <option value="" selected disabled>Select Status</option>
+                                <option value="married">Married</option>
+                                <option value="single">Single</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="account2d">Identity Type</label>
+                            <select name="identity_type" required class="form-control custom-select" id="account2d">
+                                <option value="" selected disabled>Select Identity Type</option>
+                                <option value="National ID">National ID Card</option>
+                                <option value="Drivers Licence">Drivers Licence</option>
+                                <option value="International Passport">International Passport</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">ID Image</label>
+                            <input type="file" class="form-control" id="text11d" name="id_image" required='required'> 
+                        </div>
+                    </div>
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label" for="text11d">Signature Image</label>
+                            <input type="file" class="form-control" id="text11d" name="signature_image" required='required'> 
+                        </div>
+                    </div>
+
+                    <div class="form-group basic">
+                        {% if request.user.kyc_submitted and request.user.kyc_confirmed %}
+                        <button disabled class="btn btn-primary btn-block btn-lg">KYC Confirmed</button>
+                        {% elif request.user.kyc_submitted %}
+                        <button disabled class="btn btn-primary btn-block btn-lg">KYC Submitted</button>
+                        {% else %}
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+        </ul>
+    </div>
+    <!-- * App Capsule -->
+
+{% endblock %}

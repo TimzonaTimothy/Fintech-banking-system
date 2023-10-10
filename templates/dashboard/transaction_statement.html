@@ -1,0 +1,49 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+
+        <div class="section mt-3 text-center">
+            <div class="avatar-section">
+                <h3>Transaction Statement</h3>
+            </div>
+           
+        </div>
+
+        
+        <div class="container-fluid mt-2">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group basic">
+                    <label class="label">Start Date</label>
+                    <div class="input-group mb-2">
+
+                        <input type="date" class="form-control" name="start_date" id="text11d" 
+                         required='required'  placeholder="Start Date">
+                                
+                    </div>
+                </div>
+                <div class="form-group basic">
+                    <label class="label">End Date</label>
+                    <div class="input-group mb-2">
+
+                        <input type="date" class="form-control" name="end_date" id="text11d" 
+                         required='required'  placeholder="End Date">
+                                
+                    </div>
+                </div>
+                
+                <div class="form-group basic">
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Generate PDF</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- * App Capsule -->
+
+ 
+{% endblock %}

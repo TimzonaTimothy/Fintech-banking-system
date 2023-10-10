@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="main-wrapper">
+        <section class="inner-hero bg_img overlay--one" style="background-image: url('{% static 'assets/images/frontend/breadcumb/60c7569dec4f01623676573.jpg' %}');">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2 class="page-title text-white">Contact Us</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+            <section class="pt-80 pb-80">
+        <div class="container">
+            <div class="row gy-4 justify-content-center pb-50">
+                <div class="col-xl-6 col-lg-5 order-lg-1 order-2">
+                    <div class="map-wrapper">
+                        <iframe src="" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                {% include 'alert.html' %}
+                <div class="col-xl-6 col-lg-7 order-lg-2 order-1">
+                    <div class="contact-form-wrapper">
+                        <h2 class="title">Feel free to contact us</h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="_token" value="">                            
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <div class="custom-icon-field">
+                                            <i class="las la-user"></i>
+                                            <input name="name" id="name" type="text" placeholder="Your Name" class="form--control" value="" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <div class="custom-icon-field">
+                                            <i class="las la-envelope"></i>
+                                            <input name="email" id="email" type="text" placeholder="Enter E-Mail Address" class="form--control" value="" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Subject</label>
+                                        <div class="custom-icon-field">
+                                            <i class="las la-clipboard-list"></i>
+                                            <input name="subject" id="subject" type="text" placeholder="Write your subject" class="form--control" value="" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 form-group">
+                                    <label>Message</label>
+                                    <div class="custom-icon-field">
+                                        
+                                        <textarea name="message"  placeholder="Write your message" class="form-control" required></textarea>
+                                        <i class="las la-comment"></i>
+                                    </div>
+                                </div>
+                            </div>
+                                                        <button type="submit" class="btn btn--gradient w-100">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <h3 class="fw-bold mb-4">Quick Information</h3>
+            <div class="row gy-4 justify-content-center">
+                                    <div class="col-lg-4 col-md-6">
+                        <div class="contact-info-card section--bg2">
+                            <div class="contact-info-card__icon">
+                                <i class="fas fa-map-marked"></i>                            </div>
+                            <div class="contact-info-card__content">
+                                <h4 class="title">Head Office Address</h4>
+                                <a href="javascript:void(0)">Location</a>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                        <div class="contact-info-card section--bg2">
+                            <div class="contact-info-card__icon">
+                                <i class="fas fa-envelope"></i>                            </div>
+                            <div class="contact-info-card__content">
+                                <h4 class="title">Email Address</h4>
+                                <a href="javascript:void(0)">info@company.com</a>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                        <div class="contact-info-card section--bg2">
+                            <div class="contact-info-card__icon">[=]
+                                <i class="fas fa-phone"></i>                            </div>
+                            <div class="contact-info-card__content">
+                                <h4 class="title">Mobile Number</h4>
+                                <a href="javascript:void(0)">+Number</a>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </section>
+        <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a  rel="noopener" target="_blank"><span class="blue-text">Markets today</span></a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "US 100"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR/USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "Bitcoin"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "Ethereum"
+    }
+  ],
+  "showSymbolLogo": true,
+  "colorTheme": "light",
+  "isTransparent": false,
+  "displayMode": "adaptive",
+  "locale": "en"
+}
+  </script>
+</div>
+
+
+{% endblock %}

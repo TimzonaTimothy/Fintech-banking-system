@@ -1,0 +1,90 @@
+
+
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+        <div class="section mt-3 text-center">
+            <div class="avatar-section">
+                <h1>Chart with a support</h1>
+            </div>
+           
+        </div>
+        <div class="section mt-2">
+            <div class="section-title">Supports</div>
+            <div class="card">
+                <ul class="listview flush transparent no-line image-listview detailed-list mt-1 mb-1">
+                    {% if request.user.is_superuser %}
+                        {% if users %}
+                            {% for user in users %}
+                            
+                            <li>
+                                <div class="item">
+                                    
+                                    <div class="in">
+                                        <div><a href="{% url 'core:chart_support' user.id %}">
+                                            <strong>{{user.full_name}}</strong>
+                                            </a>
+                                        </div>
+                                        <div class="text-end">
+                                            
+                                            <div class="text-small">
+                                                <span class="badge badge-success">
+                                                    <ion-icon name="arrow-up-outline"></ion-icon>
+                                                    online
+                                                </span>
+                                                Unread Messages: {{ user.unread_count }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                           
+                            {% endfor %}
+                        {% endif %}
+                    {% else %}
+                    
+                    {% if adms %}
+                    
+                    
+                    <li>
+                        <div class="item">
+                            
+                            <div class="in">
+                                <div><a href="{% url 'core:chart_support' adms.id %}">
+                                    <strong>Chat</strong>
+                                    </a>
+                                </div>
+                                <div class="text-end">
+                                    
+                                    <div class="text-small">
+                                        <span class="badge badge-success">
+                                            <ion-icon name="arrow-up-outline"></ion-icon>
+                                            online
+                                        </span>
+                                        {% if adms.unread_count %} {{ adms.unread_count }}{% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                   
+                    {% endif %}
+                    {% endif %}
+                    
+                  
+                    <!-- * item -->
+                </ul>
+            </div>
+        </div>
+        <!-- Top Coins -->
+
+       
+
+    </div>
+    <!-- * App Capsule -->
+
+    
+{% endblock %}
